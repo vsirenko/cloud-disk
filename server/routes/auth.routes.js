@@ -1,7 +1,7 @@
 const Router = require('express')
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
-const {check, validateResult} = require('express-validator')
+const {check, validationResult} = require('express-validator')
 const router = new Router()
 
 router.post('/registration',
@@ -11,13 +11,14 @@ router.post('/registration',
     ],
     async (req, res) => {
     try {
-        const errors = validateResult(req)
+        console.log(req.body)
+        const errors = validationResult(req)
         if(!errors.isEmpty()) {
             return res.status(400).json({message: 'Uncorrect request', errors})
         }
 
         const {email, password} = req.body
-        const candidate = User.findOne({email})
+        const candidate =  await  User.findOne({email})
 
         if(candidate) {
             return res.status(400).json({message: `User with email ${email} alredy exist`})
