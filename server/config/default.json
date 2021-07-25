@@ -1,0 +1,4 @@
+{
+  "serverPort": 5000,
+  "dbUrl": "mongodb+srv://admin:123@cloud.jaqwm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
