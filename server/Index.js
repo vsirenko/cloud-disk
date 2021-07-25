@@ -11,7 +11,7 @@ app.use('/api/auth', authRouter)
 
 const start = () => {
     try {
-        mongoose.connect(config.get('dbUrl'))
+        mongoose.connect(config.get('dbUrl'),  {useNewUrlParser: true})
         app.listen(PORT, () => {
             console.log('server started on port', PORT)
         })
